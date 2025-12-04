@@ -41,7 +41,6 @@
       background: #111827 center/cover no-repeat;
       box-shadow: 0 28px 60px rgba(0, 0, 0, 0.7);
       border: 1px solid rgba(15, 23, 42, 0.9);
-      position: relative;
     }
 
     .photo img {
@@ -49,9 +48,6 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      opacity: 1;
-      transition: opacity 1s ease-in-out;
-      border-radius: 22px;
     }
 
     /* RIGHT PANEL */
@@ -170,11 +166,6 @@
       overflow: hidden;
       background: #020617;
       flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 0.8rem;
-      color: #e5e7eb;
     }
 
     .agent-avatar img {
@@ -236,6 +227,7 @@
       box-shadow: 0 -12px 40px rgba(0,0,0,0.7);
     }
 
+    /* RAISE FOOTER TEXT */
     .footer-left,
     .footer-right {
       transform: translateY(-25px);
@@ -247,6 +239,7 @@
       color: #f1f5f9;
     }
 
+    /* CENTER LOGO — LOWERED SLIGHTLY */
     .footer-center {
       flex: 0 0 auto;
       transform: translateY(-30px);
@@ -330,21 +323,17 @@
   const listings = [
     {
       id: "1111",
+      status: "For Sale",
+      lakeTag: "LAKE MUSKOKA",
       address: "1111 Lakeshore Drive",
       city: "Gravenhurst",
       province: "ON",
-      lake: "Lake Muskoka",
-      status: "For Sale",
+      lakeLine: "Lake Muskoka",
       price: "$2,995,000",
       details: "4 Bedrooms | 3 Bathrooms | 2,700 sq ft",
       meta: "Waterfront • Income & Lifestyle Opportunity",
-      photoUrls: [
-        "1111-1.jpg",
-        "1111-2.jpg",
-        "1111-3.jpg",
-        "1111-4.jpg",
-        "1111-5.jpg"
-      ],
+      photoBase: "1111",
+      photoCount: 5,
       agent1: {
         name: "Tyler DaCosta",
         title: "Broker of Record",
@@ -363,21 +352,17 @@
     },
     {
       id: "1292",
+      status: "For Sale",
+      lakeTag: "LAKE OF BAYS",
       address: "1292 Port Cunnington Road",
       city: "Franklin",
       province: "ON",
-      lake: "Lake of Bays",
-      status: "For Sale",
+      lakeLine: "Lake of Bays",
       price: "$1,695,000",
       details: "4 Bedrooms | 3 Bathrooms",
-      meta: "Updated Viceroy-inspired cottage with sandy waterfront & rebuilt triple garage",
-      photoUrls: [
-        "1292-1.jpg",
-        "1292-2.jpg",
-        "1292-3.jpg",
-        "1292-4.jpg",
-        "1292-5.jpg"
-      ],
+      meta: "Year-round Lake of Bays cottage with sand beach, sunsets & rental potential.",
+      photoBase: "1292",
+      photoCount: 5,
       agent1: {
         name: "Tyler DaCosta",
         title: "Broker of Record",
@@ -396,21 +381,17 @@
     },
     {
       id: "225",
+      status: "For Sale",
+      lakeTag: "118 ACRES",
       address: "225 Etwell Road",
       city: "Huntsville",
       province: "ON",
-      lake: "118 Acres – Huntsville",
-      status: "For Sale",
+      lakeLine: "118 Acres in Huntsville",
       price: "$1,999,999",
       details: "4+1 Bedrooms | 2+1 Bathrooms | 3,465 sq ft",
-      meta: "Historic brick farmhouse on 118 acres, just 5 minutes to Huntsville",
-      photoUrls: [
-        "225-1.jpg",
-        "225-2.jpg",
-        "225-3.jpg",
-        "225-4.jpg",
-        "225-5.jpg"
-      ],
+      meta: "Historic brick farmhouse on 118 acres just 5 minutes to Huntsville.",
+      photoBase: "225",
+      photoCount: 5,
       agent1: {
         name: "Kevin Knox",
         title: "Salesperson",
@@ -423,21 +404,17 @@
     },
     {
       id: "2090",
+      status: "For Sale",
+      lakeTag: "KAWARTHA LAKES",
       address: "2090 County 121 Road",
       city: "Somerville - Kawartha Lakes",
       province: "ON",
-      lake: "225+ Acres – Private Country Land",
-      status: "For Sale",
+      lakeLine: "225+ Acres of Private Country Land",
       price: "$1,999,500",
       details: "4 Bedrooms | 3 Bathrooms | 2,980 sq ft",
       meta: "Expansive 225-acre retreat with pond, pool, trails and handcrafted log home.",
-      photoUrls: [
-        "2090-1.jpg",
-        "2090-2.jpg",
-        "2090-3.jpg",
-        "2090-4.jpg",
-        "2090-5.jpg"
-      ],
+      photoBase: "2090",
+      photoCount: 5,
       agent1: {
         name: "Tyler DaCosta",
         title: "Broker of Record",
@@ -456,21 +433,17 @@
     },
     {
       id: "10",
+      status: "For Sale",
+      lakeTag: "DOWNTOWN",
       address: "10 Brunel Road",
       city: "Huntsville",
       province: "ON",
-      lake: "Commercial | Huntsville",
-      status: "For Sale",
+      lakeLine: "Commercial Building Downtown",
       price: "$895,000",
-      details: "920 sq ft • 3 Offices • 33 ft Street-Level Frontage",
-      meta: "High-visibility Huntsville commercial building with AAA tenant and modern offices",
-      photoUrls: [
-        "10-1.jpg",
-        "10-2.jpg",
-        "10-3.jpg",
-        "10-4.jpg",
-        "10-5.jpg"
-      ],
+      details: "920 sq ft | 3 Offices | 33 ft of Street-Level Frontage",
+      meta: "High-visibility Huntsville commercial building with AAA tenant and modern offices.",
+      photoBase: "10",
+      photoCount: 5,
       agent1: {
         name: "Tyler DaCosta",
         title: "Broker of Record",
@@ -486,31 +459,62 @@
         photo: "jay.jpg"
       },
       brokerage: "Cottage Vacations Real Estate Brokerage Inc."
+    },
+    {
+      id: "929",
+      status: "For Lease",
+      lakeTag: "HUNTSVILLE",
+      address: "929 Muskoka 3 Road N",
+      city: "Huntsville",
+      province: "ON",
+      lakeLine: "1.3-Acre Country Lot",
+      price: "$3,200/Monthly",
+      details: "2 Bedrooms | 1 Bathroom | 700+ sq ft",
+      meta: "Modern Bunga-Loft on a secluded 1.3-acre lot minutes from Huntsville.",
+      photoBase: "929",
+      photoCount: 5,
+      agent1: {
+        name: "Dawn Corbett",
+        title: "Salesperson",
+        phone: "705-380-0344",
+        email: "dawn@cvrealestate.com",
+        photo: "dawn.jpg"
+      },
+      agent2: {
+        name: "Tyler DaCosta",
+        title: "Broker of Record",
+        phone: "705-706-9191",
+        email: "tyler@cvrealestate.com",
+        photo: "tyler.jpg"
+      },
+      brokerage: "Cottage Vacations Real Estate Brokerage Inc."
     }
   ];
 
-  let currentListingIndex = 0;
-  let currentPhotoIndex = 0;
+  const SLIDE_DURATION = 10000; // 10 seconds per photo
 
-  function renderAgent(cardId, agent) {
-    const container = document.getElementById(cardId);
+  const photoEl = document.getElementById("photo");
+  const statusPillEl = document.getElementById("statusPill");
+  const lakePillEl = document.getElementById("lakePill");
+  const addressEl = document.getElementById("address");
+  const locationLineEl = document.getElementById("locationLine");
+  const lakeLineEl = document.getElementById("lakeLine");
+  const priceLineEl = document.getElementById("priceLine");
+  const detailsLineEl = document.getElementById("detailsLine");
+  const metaLineEl = document.getElementById("metaLine");
+  const brokerageLineEl = document.getElementById("brokerageLine");
 
+  function renderAgentCard(containerId, agent) {
+    const el = document.getElementById(containerId);
     if (!agent) {
-      container.style.display = "none";
-      container.innerHTML = "";
+      el.style.display = "none";
+      el.innerHTML = "";
       return;
     }
-
-    const hasPhoto = agent.photo && agent.photo.trim() !== "";
-    const initials = agent.name
-      .split(" ")
-      .map(p => p[0])
-      .join("");
-
-    container.style.display = "flex";
-    container.innerHTML = `
+    el.style.display = "flex";
+    el.innerHTML = `
       <div class="agent-avatar">
-        ${hasPhoto ? `<img src="${agent.photo}" alt="${agent.name}">` : initials}
+        <img src="${agent.photo}" alt="${agent.name}">
       </div>
       <div class="agent-text">
         <div class="agent-name">${agent.name}</div>
@@ -520,53 +524,46 @@
     `;
   }
 
-  function renderListing(listing) {
-    document.getElementById("statusPill").textContent = listing.status;
-    document.getElementById("lakePill").textContent = listing.lake;
-    document.getElementById("address").textContent = listing.address;
-    document.getElementById("locationLine").textContent =
-      `${listing.city}, ${listing.province}`;
-    document.getElementById("lakeLine").textContent = listing.lake;
-    document.getElementById("priceLine").textContent = listing.price;
-    document.getElementById("detailsLine").textContent = listing.details;
-    document.getElementById("metaLine").textContent = listing.meta;
-    document.getElementById("brokerageLine").textContent = listing.brokerage;
+  function applyListing(listing) {
+    statusPillEl.textContent = listing.status.toUpperCase();
+    lakePillEl.textContent = listing.lakeTag || "";
+    addressEl.textContent = listing.address;
+    locationLineEl.textContent = `${listing.city}, ${listing.province}`;
+    lakeLineEl.textContent = listing.lakeLine || "";
+    priceLineEl.textContent = listing.price;
+    detailsLineEl.textContent = listing.details;
+    metaLineEl.textContent = listing.meta || "";
+    brokerageLineEl.textContent = listing.brokerage || "";
 
-    renderAgent("agent1Card", listing.agent1);
-    renderAgent("agent2Card", listing.agent2);
-
-    currentPhotoIndex = 0;
-    const photoDiv = document.getElementById("photo");
-    photoDiv.innerHTML =
-      `<img src="${listing.photoUrls[0]}" alt="${listing.address}">`;
+    renderAgentCard("agent1Card", listing.agent1);
+    renderAgentCard("agent2Card", listing.agent2);
   }
 
-  function showNextPhoto() {
+  let currentListingIndex = 0;
+  let currentPhotoIndex = 0;
+
+  function showListingAndPhoto() {
     const listing = listings[currentListingIndex];
-    const photoDiv = document.getElementById("photo");
-    const img = photoDiv.querySelector("img");
 
-    img.style.opacity = 0;
+    // New listing: update text/details
+    if (currentPhotoIndex === 0) {
+      applyListing(listing);
+    }
 
-    setTimeout(() => {
-      currentPhotoIndex++;
+    const photoFile = `${listing.photoBase}-${currentPhotoIndex + 1}.jpg`;
+    photoEl.innerHTML = `<img src="${photoFile}" alt="${listing.address}">`;
 
-      if (currentPhotoIndex >= listing.photoUrls.length) {
-        currentPhotoIndex = 0;
-        currentListingIndex = (currentListingIndex + 1) % listings.length;
-        renderListing(listings[currentListingIndex]);
-        return;
-      }
+    currentPhotoIndex++;
 
-      const newListing = listings[currentListingIndex];
-      img.src = newListing.photoUrls[currentPhotoIndex];
-      img.alt = newListing.address;
-      img.style.opacity = 1;
-    }, 500);
+    if (currentPhotoIndex >= listing.photoCount) {
+      currentPhotoIndex = 0;
+      currentListingIndex = (currentListingIndex + 1) % listings.length;
+    }
   }
 
-  renderListing(listings[0]);
-  setInterval(showNextPhoto, 10000); // 10 seconds per photo
+  // Kick things off immediately, then every 10 seconds
+  showListingAndPhoto();
+  setInterval(showListingAndPhoto, SLIDE_DURATION);
 </script>
 
 </body>
