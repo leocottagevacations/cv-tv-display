@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CV Real Estate – Office Display</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #050b10;
+      color: #f9fafb;
+      overflow: hidden;
+    }
+
+    .screen {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at top left, #142534 0%, #050b10 55%, #020409 100%);
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      padding: 24px 32px;
+      gap: 24px;
+    }
+
+    /* LEFT PHOTO */
+    .photo {
+      flex: 3;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #111827 center/cover no-repeat;
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      position: relative;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+      border-radius: 22px;
+    }
+
+    /* RIGHT PANEL */
+    .info {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 18px 20px 20px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(30, 64, 175, 0.35);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .pill--accent {
+      border-color: transparent;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff;
+    }
+
+    .address {
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .location-line {
+      font-size: 0.95rem;
+      color: #cbd5f5;
+    }
+
+    .lake-line {
+      font-size: 0.9rem;
+      color: #7dd3fc;
+      text-decoration: underline dotted;
+      text-underline-offset: 3px;
+    }
+
+    .price-line {
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin-top: 10px;
+    }
+
+    .details-line {
+      font-size: 0.95rem;
+      margin-top: 4px;
+      color: #e5e7eb;
+    }
+
+    .meta-line {
+      font-size: 0.8rem;
+      margin-top: 6px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .agents-card {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .agents-header {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .agents-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .agent {
+      flex: 1 1 220px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .agent-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #020617;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #e5e7eb;
+    }
+
+    .agent-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .agent-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .agent-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .agent-title {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .agent-contact {
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      line-height: 1.3;
+    }
+
+    .brokerage-line {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    /* PARTNERSHIP IMAGE */
+    .partnership {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(30, 64, 175, 0.35);
+      background: #020617;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.65);
+    }
+
+    .partnership img {
+      width: 100%;
+      display: block;
+    }
+
+    /* FOOTER BAR */
+    .footer-bar {
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background: #0c1c2a;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 -12px 40px rgba(0,0,0,0.7);
+    }
+
+    .footer-left,
+    .footer-right {
+      transform: translateY(-25px);
+    }
+
+    .footer-heading {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    .footer-center {
+      flex: 0 0 auto;
+      transform: translateY(-30px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-logo {
+      height: 150px;
+      width: auto;
+      opacity: 1;
+    }
+
+    .footer-right {
+      font-size: 0.8rem;
+      text-align: right;
+      color: #dce3ea;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+<div class="screen">
+
+  <div class="main">
+    <div class="photo" id="photo"></div>
+
+    <div class="info">
+      <div class="card">
+        <div class="pill-row">
+          <div class="pill pill--accent" id="statusPill"></div>
+          <div class="pill" id="lakePill"></div>
+        </div>
+
+        <div class="address" id="address"></div>
+        <div class="location-line" id="locationLine"></div>
+        <div class="lake-line" id="lakeLine"></div>
+
+        <div class="price-line" id="priceLine"></div>
+        <div class="details-line" id="detailsLine"></div>
+        <div class="meta-line" id="metaLine"></div>
+
+        <div class="agents-card">
+          <div class="agents-header">LISTING TEAM</div>
+
+          <div class="agents-row">
+            <div class="agent" id="agent1Card"></div>
+            <div class="agent" id="agent2Card"></div>
+          </div>
+
+          <div class="brokerage-line" id="brokerageLine"></div>
+        </div>
+      </div>
+
+      <div class="partnership">
+        <img src="partnership.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="footer-left">
+      <span class="footer-heading">Questions? Ask one of our Cottage Experts!</span>
+    </div>
+
+    <div class="footer-center">
+      <img src="logo2.png" class="footer-logo" alt="CV Logo">
+    </div>
+
+    <div class="footer-right">
+      <strong>Real Estate:</strong> info@cvrealestate.com<br>
+      <strong>Rentals:</strong> info@cottagevacations.com
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const listings = [
+    {
+      id: "1111",
+      address: "1111 Lakeshore Drive",
+      city: "Gravenhurst",
+      province: "ON",
+      lake: "Lake Muskoka",
+      status: "For Sale",
+      price: "$2,995,000",
+      details: "4 Bedrooms | 3 Bathrooms | 2,700 sq ft",
+      meta: "Waterfront • Income & Lifestyle Opportunity",
+      photoUrls: [
+        "1111-1.jpg",
+        "1111-2.jpg",
+        "1111-3.jpg",
+        "1111-4.jpg",
+        "1111-5.jpg"
+      ],
+      agent1: {
+        name: "Tyler DaCosta",
+        title: "Broker of Record",
+        phone: "705-706-9191",
+        email: "tyler@cvrealestate.com",
+        photo: "tyler.jpg"
+      },
+      agent2: {
+        name: "Jay Katzeff",
+        title: "President, Realtor®",
+        phone: "705-571-3435",
+        email: "jay@cottagevacations.com",
+        photo: "jay.jpg"
+      },
+      brokerage: "Cottage Vacations Real Estate Brokerage Inc."
+    },
+    {
+      id: "1292",
+      address: "1292 Port Cunnington Road",
+      city: "Franklin",
+      province: "ON",
+      lake: "Lake of Bays",
+      status: "For Sale",
+      price: "$1,695,000",
+      details: "4 Bedrooms | 3 Bathrooms",
+      meta: "Updated Viceroy-inspired cottage with sandy waterfront & rebuilt triple garage",
+      photoUrls: [
+        "1292-1.jpg",
+        "1292-2.jpg",
+        "1292-3.jpg",
+        "1292-4.jpg",
+        "1292-5.jpg"
+      ],
+      agent1: {
+        name: "Tyler DaCosta",
+        title: "Broker of Record",
+        phone: "705-706-9191",
+        email: "tyler@cvrealestate.com",
+        photo: "tyler.jpg"
+      },
+      agent2: {
+        name: "Kevin Knox",
+        title: "Salesperson",
+        phone: "705-571-1091",
+        email: "kevin@cvrealestate.com",
+        photo: "kevin.jpg"
+      },
+      brokerage: "Cottage Vacations Real Estate Brokerage Inc."
+    },
+    {
+      id: "225",
+      address: "225 Etwell Road",
+      city: "Huntsville",
+      province: "ON",
+      lake: "118 Acres – Huntsville",
+      status: "For Sale",
+      price: "$1,999,999",
+      details: "4+1 Bedrooms | 2+1 Bathrooms | 3,465 sq ft",
+      meta: "Historic brick farmhouse on 118 acres, just 5 minutes to Huntsville",
+      photoUrls: [
+        "225-1.jpg",
+        "225-2.jpg",
+        "225-3.jpg",
+        "225-4.jpg",
+        "225-5.jpg"
+      ],
+      agent1: {
+        name: "Kevin Knox",
+        title: "Salesperson",
+        phone: "705-571-1091",
+        email: "kevin@cvrealestate.com",
+        photo: "kevin.jpg"
+      },
+      agent2: null,
+      brokerage: "Cottage Vacations Real Estate Brokerage Inc."
+    },
+    {
+      id: "2090",
+      address: "2090 County 121 Road",
+      city: "Somerville - Kawartha Lakes",
+      province: "ON",
+      lake: "225+ Acres – Private Country Land",
+      status: "For Sale",
+      price: "$1,999,500",
+      details: "4 Bedrooms | 3 Bathrooms | 2,980 sq ft",
+      meta: "Expansive 225-acre retreat with pond, pool, trails and handcrafted log home.",
+      photoUrls: [
+        "2090-1.jpg",
+        "2090-2.jpg",
+        "2090-3.jpg",
+        "2090-4.jpg",
+        "2090-5.jpg"
+      ],
+      agent1: {
+        name: "Tyler DaCosta",
+        title: "Broker of Record",
+        phone: "705-706-9191",
+        email: "tyler@cvrealestate.com",
+        photo: "tyler.jpg"
+      },
+      agent2: {
+        name: "Sandra Wilkins",
+        title: "Salesperson",
+        phone: "705-751-7454",
+        email: "sandra@cottagevacations.com",
+        photo: "sandra.jpg"
+      },
+      brokerage: "Cottage Vacations Real Estate Brokerage Inc."
+    },
+    {
+      id: "10",
+      address: "10 Brunel Road",
+      city: "Huntsville",
+      province: "ON",
+      lake: "Commercial | Huntsville",
+      status: "For Sale",
+      price: "$895,000",
+      details: "920 sq ft • 3 Offices • 33 ft Street-Level Frontage",
+      meta: "High-visibility Huntsville commercial building with AAA tenant and modern offices",
+      photoUrls: [
+        "10-1.jpg",
+        "10-2.jpg",
+        "10-3.jpg",
+        "10-4.jpg",
+        "10-5.jpg"
+      ],
+      agent1: {
+        name: "Tyler DaCosta",
+        title: "Broker of Record",
+        phone: "705-706-9191",
+        email: "tyler@cvrealestate.com",
+        photo: "tyler.jpg"
+      },
+      agent2: {
+        name: "Jay Katzeff",
+        title: "President, Realtor®",
+        phone: "705-571-3435",
+        email: "jay@cottagevacations.com",
+        photo: "jay.jpg"
+      },
+      brokerage: "Cottage Vacations Real Estate Brokerage Inc."
+    }
+  ];
+
+  let currentListingIndex = 0;
+  let currentPhotoIndex = 0;
+
+  function renderAgent(cardId, agent) {
+    const container = document.getElementById(cardId);
+
+    if (!agent) {
+      container.style.display = "none";
+      container.innerHTML = "";
+      return;
+    }
+
+    const hasPhoto = agent.photo && agent.photo.trim() !== "";
+    const initials = agent.name
+      .split(" ")
+      .map(p => p[0])
+      .join("");
+
+    container.style.display = "flex";
+    container.innerHTML = `
+      <div class="agent-avatar">
+        ${hasPhoto ? `<img src="${agent.photo}" alt="${agent.name}">` : initials}
+      </div>
+      <div class="agent-text">
+        <div class="agent-name">${agent.name}</div>
+        <div class="agent-title">${agent.title}</div>
+        <div class="agent-contact">${agent.phone}<br>${agent.email}</div>
+      </div>
+    `;
+  }
+
+  function renderListing(listing) {
+    document.getElementById("statusPill").textContent = listing.status;
+    document.getElementById("lakePill").textContent = listing.lake;
+    document.getElementById("address").textContent = listing.address;
+    document.getElementById("locationLine").textContent =
+      `${listing.city}, ${listing.province}`;
+    document.getElementById("lakeLine").textContent = listing.lake;
+    document.getElementById("priceLine").textContent = listing.price;
+    document.getElementById("detailsLine").textContent = listing.details;
+    document.getElementById("metaLine").textContent = listing.meta;
+    document.getElementById("brokerageLine").textContent = listing.brokerage;
+
+    renderAgent("agent1Card", listing.agent1);
+    renderAgent("agent2Card", listing.agent2);
+
+    currentPhotoIndex = 0;
+    const photoDiv = document.getElementById("photo");
+    photoDiv.innerHTML =
+      `<img src="${listing.photoUrls[0]}" alt="${listing.address}">`;
+  }
+
+  function showNextPhoto() {
+    const listing = listings[currentListingIndex];
+    const photoDiv = document.getElementById("photo");
+    const img = photoDiv.querySelector("img");
+
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+      currentPhotoIndex++;
+
+      if (currentPhotoIndex >= listing.photoUrls.length) {
+        currentPhotoIndex = 0;
+        currentListingIndex = (currentListingIndex + 1) % listings.length;
+        renderListing(listings[currentListingIndex]);
+        return;
+      }
+
+      const newListing = listings[currentListingIndex];
+      img.src = newListing.photoUrls[currentPhotoIndex];
+      img.alt = newListing.address;
+      img.style.opacity = 1;
+    }, 500);
+  }
+
+  renderListing(listings[0]);
+  setInterval(showNextPhoto, 10000); // 10 seconds per photo
+</script>
+
+</body>
+</html>
